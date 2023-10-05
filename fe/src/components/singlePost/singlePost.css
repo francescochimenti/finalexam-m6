@@ -1,0 +1,14 @@
+.single-post-card {
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.single-post-card:hover {
+    transform: translateY(-5px);
+}
+
+.single-post-card .card-footer,
+.single-post-card .card-body {
+    padding: 1.5rem;
+}

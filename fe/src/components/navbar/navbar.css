@@ -1,0 +1,10 @@
+.navbar {
+    min-height: 80px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 7px;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar:hover{
+    transform: scale(1.01);
+}
