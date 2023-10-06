@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const postsRoute = require("./routes/posts");
-const usersRoute = require("./routes/users");
+const authorsRoute = require("./routes/authors")
 const logger = require("./middlewares/logger");
 require("dotenv").config();
 const PORT = 5050;
@@ -16,7 +16,7 @@ app.use(cors());
 
 //routes
 app.use("/", postsRoute);
-app.use("/", usersRoute);
+app.use("/", authorsRoute);
 
 mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,

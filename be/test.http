@@ -1,1 +1,14 @@
-GET http://localhost:5050/posts
+GET http://localhost:5050/authors
+
+####
+
+POST http://localhost:5050/authors/create
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "test@test.it",
+    "birthday": 1990,
+    "avatar": "test"
+}
