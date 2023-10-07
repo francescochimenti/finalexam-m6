@@ -46,3 +46,8 @@ const PostSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("postModel", PostSchema, "posts");
+
+// author: {
+//   type: mongoose.Schema.Types.ObjectId,
+//   ref: "authorModel",
+// },

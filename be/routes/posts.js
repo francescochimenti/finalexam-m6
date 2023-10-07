@@ -8,9 +8,7 @@ posts.get("/posts", async (req, res) => {
 
   
   try {
-    const posts = await PostModel.find()
-    .limit(pageSize)
-      .skip((page - 1) * pageSize)
+    const posts = await PostModel.find().limit(pageSize).skip((page - 1) * pageSize)
     
     const totalPosts = await PostModel.count()
     
