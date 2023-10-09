@@ -2,13 +2,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const postsRoute = require("./routes/posts");
 const authorsRoute = require("./routes/authors");
+const path = require("path");
 const logger = require("./middlewares/logger");
 require("dotenv").config();
 
 const PORT = 5050;
 const cors = require("cors");
 const app = express();
-
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 // Middleware to parse the request body as JSON
 app.use(express.json());
 

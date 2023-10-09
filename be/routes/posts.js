@@ -2,16 +2,51 @@ const express = require("express");
 const posts = express.Router();
 const validatePost = require("../middlewares/validatePost");
 const PostModel = require("../models/post");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+require("dotenv").config();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const cloudStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "uploads",
+    format: async (req, file) => "png",
+    public_id: (req, file) => file.name,
+  },
+});
+
+const cloudUpload = multer({ storage: cloudStorage });
+
+posts.post("/posts/upload", cloudUpload.single("cover"), async (req, res) => {
+  try {
+    rest.status(200).json({
+      cover: req.file.path,
+    });
+  } catch (e) {
+    res.status(500).send({
+      statusCode: 500,
+      message: "Error interno del server",
+    });
+  }
+});
 
 posts.get("/posts", async (req, res) => {
   const { page = 1, pageSize = 12 } = req.query;
 
-  
   try {
-    const posts = await PostModel.find().limit(pageSize).skip((page - 1) * pageSize)
-    
-    const totalPosts = await PostModel.count()
-    
+    const posts = await PostModel.find()
+      .limit(pageSize)
+      .skip((page - 1) * pageSize);
+
+    const totalPosts = await PostModel.count();
+
     res.status(200).send({
       statusCode: 200,
       currentPage: Number(page),

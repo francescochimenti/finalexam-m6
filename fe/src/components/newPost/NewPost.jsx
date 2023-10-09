@@ -66,7 +66,7 @@ const NewBlogPost = () => {
         </Form.Group>
         <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Cover</Form.Label>
-          <Form.Control size="lg" placeholder="Cover" value={cover} onChange={e => setCover(e.target.value)} />
+          <Form.Control type="file" name="cover" size="lg" placeholder="Cover" value={cover} onChange={e => setCover(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="blog-form-readTime-value" className="mt-3">
           <Form.Label>Read time value</Form.Label>
