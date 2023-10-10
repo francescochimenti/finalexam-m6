@@ -13,8 +13,6 @@ const PostSchema = new mongoose.Schema(
     },
     cover: {
       type: String,
-      required: false,
-      default: "https://picsum.photos/200/300",
     },
     readTime: {
       value: {

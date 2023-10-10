@@ -2,6 +2,7 @@ const express = require("express");
 const posts = express.Router();
 const validatePost = require("../middlewares/validatePost");
 const PostModel = require("../models/post");
+
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
@@ -26,7 +27,7 @@ const cloudUpload = multer({ storage: cloudStorage });
 
 posts.post("/posts/upload", cloudUpload.single("cover"), async (req, res) => {
   try {
-    rest.status(200).json({
+    res.status(200).json({
       cover: req.file.path,
     });
   } catch (e) {
