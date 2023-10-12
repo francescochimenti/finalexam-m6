@@ -26,15 +26,22 @@ const NewBlogPost = () => {
     content: text,
   };
 
+  // create a state for the file
   const [file, setFile] = useState(null);
 
+  // create a function to set the file
+  // need to be always to 0
   const onChangeSetFile = (e) => {
     setFile(e.target.files[0]);
   };
 
+  // create a function to upload the file
   const uploadFile = async (cover) => {
+    // create a new FormData object
     const fileData = new FormData();
+    // add the file to FormData object
     fileData.append("cover", cover);
+    // send the file to the server
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_BASE_URL}/posts/upload`,
@@ -47,16 +54,15 @@ const NewBlogPost = () => {
     }
   };
 
-  const handleChange = (value) => {
-    setText(value);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // check if the file is not null
     if (file) {
       try {
+        // upload the file
         const uploadedFile = await uploadFile(file);
+        // add the cover to the formData
         const finalBody = {
           ...formData,
           cover: uploadedFile.cover,
@@ -169,7 +175,7 @@ const NewBlogPost = () => {
           <Form.Label>Blog Content</Form.Label>
           <ReactQuill
             value={text}
-            onChange={handleChange}
+            onChange={(e) => setText(e.target.value)}
             className="new-blog-content"
           />
         </Form.Group>
