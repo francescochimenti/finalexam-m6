@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const postsRoute = require("./routes/posts");
 const authorsRoute = require("./routes/authors");
+const loginRoute = require("./routes/login");
 const logger = require("./middlewares/logger");
 require("dotenv").config();
 
@@ -21,6 +22,7 @@ app.use(cors());
 // Routes
 app.use("/", postsRoute);
 app.use("/", authorsRoute);
+app.use("/", loginRoute);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URL, {

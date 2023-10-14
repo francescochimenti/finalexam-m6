@@ -26,14 +26,8 @@ const PostSchema = new mongoose.Schema(
       },
     },
     author: {
-      name: {
-        type: String,
-        required: true,
-      },
-      avatar: {
-        type: String,
-        required: true,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "authorModel",
     },
     content: {
       type: String,
@@ -44,8 +38,3 @@ const PostSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("postModel", PostSchema, "posts");
-
-// author: {
-//   type: mongoose.Schema.Types.ObjectId,
-//   ref: "authorModel",
-// },

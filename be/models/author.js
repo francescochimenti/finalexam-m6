@@ -5,14 +5,16 @@ const AuthorSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: true,
-      default: "Unknown",
     },
     lastName: {
       type: String,
       required: true,
-      default: "Unknown",
     },
     email: {
+      type: String,
+      required: true,
+    },
+    password: {
       type: String,
       required: true,
     },
