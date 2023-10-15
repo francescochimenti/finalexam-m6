@@ -6,10 +6,10 @@ POST http://localhost:5050/authors/create
 Content-Type: application/json
 
 {
-    "firstName": "John",
+    "firstName": "Francesco",
     "lastName": "Doe",
     "email": "test@test.it",
-    "password": "nuovapassword"
+    "password": "asd"
 }
 
 ####
@@ -19,5 +19,16 @@ Content-Type: application/json
 
 {
     "email": "test@test.it",
-    "password": "nuovapassword"
+    "password": "asd"
+}
+
+####
+
+POST http://localhost:5050/posts/create
+Content-Type: application/json
+
+{
+    "category": "ciao",
+    "title": "ciao",
+    "cover": "ciao"
 }

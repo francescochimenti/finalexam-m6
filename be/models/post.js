@@ -17,7 +17,7 @@ const PostSchema = new mongoose.Schema(
     readTime: {
       value: {
         type: Number,
-        required: true,
+        required: false,
       },
       unit: {
         type: String,
@@ -31,7 +31,7 @@ const PostSchema = new mongoose.Schema(
     },
     content: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   { timestamps: true, strict: true }

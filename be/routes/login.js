@@ -30,6 +30,7 @@ login.post("/login", async (request, response) => {
   //token creation
   const token = jwt.sign(
     {
+      id: author._id,
       firstName: author.firstName,
       lastName: author.lastName,
       email: author.email,

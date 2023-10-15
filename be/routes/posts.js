@@ -1,6 +1,5 @@
 const express = require("express");
 const posts = express.Router();
-const validatePost = require("../middlewares/validatePost");
 const PostModel = require("../models/post");
 
 const multer = require("multer");
@@ -109,7 +108,7 @@ posts.get("/posts/:postId", async (req, res) => {
   }
 });
 
-posts.post("/posts/create", validatePost, async (req, res) => {
+posts.post("/posts/create", async (req, res) => {
   const newPost = new PostModel({
     title: req.body.title,
     category: req.body.category,
@@ -118,10 +117,7 @@ posts.post("/posts/create", validatePost, async (req, res) => {
       value: req.body.readTime.value,
       unit: req.body.readTime.unit,
     },
-    author: {
-      name: req.body.author.name,
-      avatar: req.body.author.avatar,
-    },
+    author: req.body.author,
     content: req.body.content,
   });
 

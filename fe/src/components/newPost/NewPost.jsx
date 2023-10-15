@@ -3,20 +3,22 @@ import { Button, Container, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
+import useSession from "../../hooks/useSession";
 
 const NewBlogPost = () => {
+  const session = useSession();
+  console.log(session);
   const [text, setText] = useState("");
-  const [author, setAuthor] = useState("");
-  const [avatar, setAvatar] = useState("");
   const [title, setTitle] = useState("");
   const [readTime, setReadTime] = useState({ value: 0, unit: "minutes" });
   const [category, setCategory] = useState("");
 
+  const handleChange = (value) => {
+    setText(value);
+  };
+
   const formData = {
-    author: {
-      name: author,
-      avatar: avatar,
-    },
+    author: session.id,
     title: title,
     readTime: {
       value: parseInt(readTime.value),
@@ -93,24 +95,6 @@ const NewBlogPost = () => {
         encType="multipart/form-data"
       >
         <Form.Group controlId="blog-form" className="mt-3">
-          <Form.Label>Author</Form.Label>
-          <Form.Control
-            size="lg"
-            placeholder="Author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="blog-form" className="mt-3">
-          <Form.Label>Author avatar</Form.Label>
-          <Form.Control
-            size="lg"
-            placeholder="Author avatar"
-            value={avatar}
-            onChange={(e) => setAvatar(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="blog-form" className="mt-3">
           <Form.Label>Title</Form.Label>
           <Form.Control
             size="lg"
@@ -175,7 +159,7 @@ const NewBlogPost = () => {
           <Form.Label>Blog Content</Form.Label>
           <ReactQuill
             value={text}
-            onChange={(e) => setText(e.target.value)}
+            onChange={handleChange}
             className="new-blog-content"
           />
         </Form.Group>
