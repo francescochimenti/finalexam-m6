@@ -39,6 +39,7 @@ const NewBlogPost = () => {
 
   // create a function to upload the file
   const uploadFile = async (cover) => {
+    console.log(cover);
     // create a new FormData object
     const fileData = new FormData();
     // add the file to FormData object

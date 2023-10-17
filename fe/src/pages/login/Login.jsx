@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Form, Button, Container, Alert } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({});
@@ -39,16 +41,37 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input type="text" name="email" required onChange={handleInputChange} />
-      <input
-        type="password"
-        name="password"
-        required
-        onChange={handleInputChange}
-      />
-      <button type="submit">Login</button>
-    </form>
+    <Container style={{ width: "300px", marginTop: "100px" }}>
+      <h2 className="mb-4">Login</h2>
+      {login?.error && <Alert variant="danger">{login.error}</Alert>}
+      <Form onSubmit={onSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            required
+            onChange={handleInputChange}
+            placeholder="Enter email"
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            required
+            onChange={handleInputChange}
+            placeholder="Password"
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
