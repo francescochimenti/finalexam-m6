@@ -7,7 +7,6 @@ import useSession from "../../hooks/useSession";
 
 const NewBlogPost = () => {
   const session = useSession();
-  console.log(session);
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [readTime, setReadTime] = useState({ value: 0, unit: "minutes" });
@@ -39,7 +38,6 @@ const NewBlogPost = () => {
 
   // create a function to upload the file
   const uploadFile = async (cover) => {
-    console.log(cover);
     // create a new FormData object
     const fileData = new FormData();
     // add the file to FormData object
