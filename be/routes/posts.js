@@ -38,10 +38,11 @@ posts.post("/posts/upload", cloudUpload.single("cover"), async (req, res) => {
 });
 
 posts.get("/posts", async (req, res) => {
-  const { page = 1, pageSize = 12 } = req.query;
+  const { page = 1, pageSize = 8 } = req.query;
 
   try {
     const posts = await PostModel.find()
+      .populate("author", "firstName lastName email avatar birthday")
       .limit(pageSize)
       .skip((page - 1) * pageSize);
 

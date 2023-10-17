@@ -29,11 +29,13 @@ const SinglePost = ({ post }) => {
       <div className="d-flex align-items-center mb-3 w-100">
         <img
           src={post.author.avatar}
-          alt={`${post.author.name}'s avatar`}
+          alt={`${post.author.firstName}'s avatar`}
           className="rounded-circle"
           style={{ width: "40px", height: "40px" }}
         />
-          <span className="ms-2">{post.author.name}</span>
+        <span className="ms-2">
+          {post.author.firstName} {post.author.lastName}
+        </span>
       </div>
       <Card.Footer className="text-muted">
         <small>{new Date(post.createdAt).toLocaleDateString()}</small>

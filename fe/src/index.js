@@ -6,8 +6,10 @@ import "./index.css";
 
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import postReducers from "../src/reducers/postReducers";
 
 const reducer = combineReducers({
+  posts: postReducers,
 });
 
 const store = configureStore({
@@ -19,7 +21,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-        <App />
+      <App />
     </Provider>
   </React.StrictMode>
 );

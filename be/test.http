@@ -6,9 +6,9 @@ POST http://localhost:5050/authors/create
 Content-Type: application/json
 
 {
-    "firstName": "Francesco",
+    "firstName": "Mario",
     "lastName": "Doe",
-    "email": "test@test.it",
+    "email": "test@asd.it",
     "password": "asd"
 }
 
