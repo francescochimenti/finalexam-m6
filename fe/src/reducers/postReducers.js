@@ -17,6 +17,22 @@ export const fetchPosts = createAsyncThunk(
   }
 );
 
+export const searchPostsByTitle = createAsyncThunk(
+  "posts/searchPostsByTitle",
+  async (title) => {
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_BASE_URL}/posts/byTitle?title=${title}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(
+        error.response ? error.response.data.message : "Failed to search posts"
+      );
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "posts",
   initialState: {
@@ -36,6 +52,17 @@ const postSlice = createSlice({
         state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(searchPostsByTitle.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(searchPostsByTitle.fulfilled, (state, action) => {
+        state.status = "success";
+        state.posts = action.payload.posts;
+      })
+      .addCase(searchPostsByTitle.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

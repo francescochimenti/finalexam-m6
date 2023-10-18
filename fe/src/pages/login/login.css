@@ -1,0 +1,27 @@
+.main {
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1530037327011-979a1109a5dc?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-primary {
+    background-color: #9ded5c !important;
+    border: none !important;
+    color: #000000 !important;
+    padding: 10px 20px !important;
+}
+
+.button-link {
+    background: none !important;
+    border: none !important;
+    color: #007BFF !important;
+    text-decoration: underline !important;
+    cursor: pointer !important;
+}
