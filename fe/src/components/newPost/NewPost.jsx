@@ -147,11 +147,16 @@ const NewBlogPost = () => {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option>Category 1</option>
-            <option>Category 2</option>
-            <option>Category 3</option>
-            <option>Category 4</option>
-            <option>Category 5</option>
+            <option>Travel</option>
+            <option>Food & Recipes</option>
+            <option>Health & Fitness</option>
+            <option>Personal Finance</option>
+            <option>Technology & Gadgets</option>
+            <option>Arts & Crafts</option>
+            <option>Book Reviews</option>
+            <option>Career & Education</option>
+            <option>Parenting & Family</option>
+            <option>Home & Garden</option>
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="blog-content" className="mt-3">

@@ -32,7 +32,7 @@ const BlogPost = () => {
           {status === "success" &&
             posts &&
             posts.map((post) => (
-              <Col lg={3} md={4} sm={12} key={post._id}>
+              <Col lg={4} md={6} sm={12} key={post._id}>
                 <SinglePost post={post} />
               </Col>
             ))}
