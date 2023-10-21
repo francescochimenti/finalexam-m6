@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <div className={` ${isLogin ? "main" : "main"}`}>
-      <Container className={` ${isLogin ? "w-25" : "w-50"}`}>
+      <Container className={` ${isLogin ? "w-75" : "w-100"}`}>
         <Card className="p-4 border-0 shadow">
           <h2 className="mb-4 text-center fw-bold">epibooks</h2>
           {response?.error && <Alert variant="danger">{response.error}</Alert>}
