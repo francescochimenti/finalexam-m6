@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import useSession from "../../hooks/useSession";
+import { setCommentToggle } from "../../reducers/getCommentToggle";
+import { useDispatch } from "react-redux";
 
 const AddComment = () => {
   const session = useSession();
+  const dispatch = useDispatch();
   console.log("session", session.id);
 
   const { id } = useParams();
@@ -23,6 +26,12 @@ const AddComment = () => {
         commentData
       );
       console.log("Comment added:", response.data);
+      setCommentData({
+        comment: "",
+        rate: 5,
+        authorId: session.id,
+      });
+      dispatch(setCommentToggle());
     } catch (error) {
       console.error(
         "Error adding comment:",
@@ -32,26 +41,39 @@ const AddComment = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea
-        value={commentData.comment}
-        onChange={(e) =>
-          setCommentData({ ...commentData, comment: e.target.value })
-        }
-        placeholder="Write your comment here"
-        required
-      />
-      <input
-        type="number"
-        value={commentData.rate}
-        onChange={(e) =>
-          setCommentData({ ...commentData, rate: parseInt(e.target.value, 10) })
-        }
-        placeholder="Rate (e.g., 1 to 5)"
-        required
-      />
-      {/* Assuming authorId and postId are set externally, so no input fields for them */}
-      <button type="submit">Add Comment</button>
+    <form className="container mt-4">
+      <div className="mb-3">
+        <textarea
+          value={commentData.comment}
+          onChange={(e) =>
+            setCommentData({ ...commentData, comment: e.target.value })
+          }
+          placeholder="Write your comment here"
+          required
+          className="form-control"
+          rows="4"
+        />
+      </div>
+      <div className="mb-3">
+        <input
+          type="number"
+          min="1"
+          max="5"
+          value={commentData.rate}
+          onChange={(e) =>
+            setCommentData({
+              ...commentData,
+              rate: parseInt(e.target.value, 10),
+            })
+          }
+          placeholder="Rate (e.g., 1 to 5)"
+          required
+          className="form-control"
+        />
+      </div>
+      <button onClick={handleSubmit} className="btn btn-primary">
+        Add Comment
+      </button>
     </form>
   );
 };

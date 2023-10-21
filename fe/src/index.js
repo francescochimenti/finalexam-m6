@@ -7,9 +7,11 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import postReducers from "../src/reducers/postReducers";
+import getCommentToggle from "../src/reducers/getCommentToggle";
 
 const reducer = combineReducers({
   posts: postReducers,
+  commentToggle: getCommentToggle,
 });
 
 const store = configureStore({

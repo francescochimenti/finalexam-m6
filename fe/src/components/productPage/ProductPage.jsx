@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"; // Import useState
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import "./productPage.css";
-import AddComment from "../addComment/AddComment";
 
 function ProductPage() {
   const { id } = useParams();
@@ -37,10 +36,9 @@ function ProductPage() {
         {data ? (
           <>
             <img
-              className="blog-details-cover"
+              className="blog-details-cover fluid shadow"
               src={data.post.cover}
               alt={`Cover of ${data.post.title}`}
-              fluid
             />
 
             <div className="blog-details-author">
@@ -76,7 +74,6 @@ function ProductPage() {
           </div>
         )}
       </Container>
-      <AddComment />
     </div>
   );
 }

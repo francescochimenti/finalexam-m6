@@ -32,3 +32,7 @@ Content-Type: application/json
     "title": "ciao",
     "cover": "ciao"
 }
+
+####
+
+DELETE http://localhost:5050/posts/delete/653426aee168c54ba91ddd7f

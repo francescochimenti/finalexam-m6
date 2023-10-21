@@ -179,6 +179,7 @@ posts.patch("/posts/update/:postId", async (req, res) => {
 posts.delete("/posts/delete/:postId", async (req, res) => {
   const { postId } = req.params;
   try {
+    await CommentModel.deleteMany({ postId: postId });
     const post = await PostModel.findByIdAndDelete(postId);
     if (!post) {
       return res.status(404).send({
@@ -188,7 +189,7 @@ posts.delete("/posts/delete/:postId", async (req, res) => {
     }
     res.status(200).send({
       statusCode: 200,
-      message: "Post deleted successfully",
+      message: "Post and its associated comments deleted successfully",
     });
   } catch (e) {
     res.status(500).send({
@@ -203,7 +204,10 @@ posts.delete("/posts/delete/:postId", async (req, res) => {
 posts.get("/posts/:id/comments", async (req, res) => {
   try {
     const postId = req.params.id;
-    const comments = await CommentModel.find({ postId: postId });
+    const comments = await CommentModel.find({ postId: postId }).populate(
+      "authorId",
+      "firstName lastName email avatar birthday"
+    );
     if (comments.length === 0) {
       return res
         .status(404)
@@ -231,7 +235,12 @@ posts.get("/posts/:id/comments/:commentId", async (req, res) => {
 posts.post("/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const newComment = new CommentModel({ ...req.body, postId: id });
+    const newComment = new CommentModel({
+      comment: req.body.comment,
+      rate: req.body.rate,
+      postId: id,
+      authorId: req.body.authorId,
+    });
     const savedComment = await newComment.save();
     res.status(201).send(savedComment);
   } catch (error) {
