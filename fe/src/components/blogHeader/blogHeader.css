@@ -1,44 +1,13 @@
-.blog-image {
-    width: 95%;
-    margin: auto;
-    height: 200px !important;
-    border-radius: 10px;
-    background-image: url("https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=2940&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    transition: all 0.5s ease-in-out;
-}
-
-.blog-image:hover {
-    transform: scale(1.02);
-}
-
-.blog-image::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: inherit;
-    z-index: -1;
-}
-
 .form{
-    width: 100%;
+    width: 30%;
     display: flex;
     justify-content: center;
 }
 
 
 #search-input{
-    width: 60%;
+    width: 350px;
+    height: 50px;
     max-width: 400px;
     padding: 10px 20px;
     border: none;

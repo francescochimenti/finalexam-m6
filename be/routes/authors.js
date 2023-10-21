@@ -49,4 +49,42 @@ authors.post("/authors/create", async (request, response) => {
   }
 });
 
+authors.patch("/authors/update/:id", async (request, response) => {
+  try {
+    const author = await AuthorModel.findByIdAndUpdate(
+      request.params.id,
+      request.body,
+      {
+        new: true,
+      }
+    );
+    response.status(200).send({
+      statusCode: 200,
+      message: "Author updated successfully",
+      author,
+    });
+  } catch (e) {
+    response.status(500).send({
+      statusCode: 500,
+      message: "Internal error",
+    });
+  }
+});
+
+authors.delete("/authors/delete/:id", async (request, response) => {
+  try {
+    const author = await AuthorModel.findByIdAndDelete(request.params.id);
+    response.status(200).send({
+      statusCode: 200,
+      message: "Author deleted successfully",
+      author,
+    });
+  } catch (e) {
+    response.status(500).send({
+      statusCode: 500,
+      message: "Internal error",
+    });
+  }
+});
+
 module.exports = authors;

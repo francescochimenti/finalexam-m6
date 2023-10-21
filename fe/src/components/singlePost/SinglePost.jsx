@@ -1,6 +1,5 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-// import DOMPurify from "dompurify";
 import "./singlePost.css";
 
 const SinglePost = ({ post }) => {
@@ -8,10 +7,11 @@ const SinglePost = ({ post }) => {
     return <p>Loading...</p>;
   }
 
-  // const sanitizedHTML = DOMPurify.sanitize(post.content);
-
   return (
     <Card
+      onClick={() => {
+        window.location.href = `/product/${post._id}`;
+      }}
       className="single-post-card mb-4 shadow-sm"
       style={{
         width: "100%",
@@ -62,11 +62,6 @@ const SinglePost = ({ post }) => {
           Published on: {new Date(post.createdAt).toLocaleDateString()}
         </small>
       </Card.Footer>
-
-      {/* <div
-        className="p-3"
-        dangerouslySetInnerHTML={{ __html: sanitizedHTML }}
-      /> */}
     </Card>
   );
 };

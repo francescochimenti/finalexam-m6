@@ -13,7 +13,14 @@ function NavScrollExample() {
           <Nav className="me-auto my-2 my-lg-0">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/home">About</Nav.Link>
-            <Nav.Link href="/">Logout</Nav.Link>
+            <Nav.Link
+              onClick={() => {
+                localStorage.removeItem("loggedInUser");
+              }}
+              href="/"
+            >
+              Logout
+            </Nav.Link>
           </Nav>
           <Nav.Link href="/new">Create new Post</Nav.Link>
         </Navbar.Collapse>

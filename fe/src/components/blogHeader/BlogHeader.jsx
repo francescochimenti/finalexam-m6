@@ -14,13 +14,13 @@ const BlogPost = () => {
 
   const session = useSession();
   return (
-    <div className="blog-image mt-4 d-flex flex-column align-items-center justify-content-evenly">
-      <h1 className="text-center text-light fw-bold">
-        Welcome back, <br />
-        <span className="text-warning">
+    <div className="d-flex justify-content-around align-items-center flex-wrap">
+      <div className="blog-image mt-4 d-flex flex-column">
+        <span className="display-3 fw-bold">Welcome back:</span>
+        <h1 className=" text-warning display-1 fw-bold">
           {session.firstName} {session.lastName}
-        </span>
-      </h1>
+        </h1>
+      </div>
       <div className="form">
         <input
           type="text"

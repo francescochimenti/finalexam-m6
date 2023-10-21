@@ -1,6 +1,8 @@
 const express = require("express");
 const posts = express.Router();
 const PostModel = require("../models/post");
+const comments = express.Router();
+const CommentModel = require("../models/comment");
 
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
@@ -69,8 +71,7 @@ posts.get("/posts/byTitle", async (req, res) => {
   try {
     const posts = await PostModel.find({
       title: { $regex: title, $options: "i" },
-    });
-
+    }).populate("author", "firstName lastName email avatar birthday");
     res.status(200).send({
       statusCode: 200,
       message: "Posts fetched successfully",
@@ -87,7 +88,10 @@ posts.get("/posts/byTitle", async (req, res) => {
 posts.get("/posts/:postId", async (req, res) => {
   const { postId } = req.params;
   try {
-    const post = await PostModel.findById(postId);
+    const post = await PostModel.findById(postId).populate(
+      "author",
+      "firstName lastName email avatar birthday"
+    );
 
     if (!post) {
       return res.status(404).send({
@@ -191,6 +195,80 @@ posts.delete("/posts/delete/:postId", async (req, res) => {
       statusCode: 500,
       message: "Error interno del server",
     });
+  }
+});
+
+//comments
+
+posts.get("/posts/:id/comments", async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const comments = await CommentModel.find({ postId: postId });
+    if (comments.length === 0) {
+      return res
+        .status(404)
+        .send({ message: "Nessun commento trovato per questo post." });
+    }
+    res.status(200).send(comments);
+  } catch (error) {
+    res.status(500).send({ message: "Errore del server.", error: error });
+  }
+});
+
+posts.get("/posts/:id/comments/:commentId", async (req, res) => {
+  try {
+    const { id, commentId } = req.params;
+    const comment = await CommentModel.findOne({ _id: commentId, postId: id });
+    if (!comment) {
+      return res.status(404).send({ message: "Commento non trovato." });
+    }
+    res.status(200).send(comment);
+  } catch (error) {
+    res.status(500).send({ message: "Errore del server.", error: error });
+  }
+});
+
+posts.post("/posts/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const newComment = new CommentModel({ ...req.body, postId: id });
+    const savedComment = await newComment.save();
+    res.status(201).send(savedComment);
+  } catch (error) {
+    res.status(500).send({ message: "Errore del server.", error: error });
+  }
+});
+
+posts.put("/posts/:id/comment/update/:commentId", async (req, res) => {
+  try {
+    const { id, commentId } = req.params;
+    const updatedComment = await CommentModel.findOneAndUpdate(
+      { _id: commentId, postId: id },
+      req.body,
+      { new: true }
+    );
+    if (!updatedComment) {
+      return res.status(404).send({ message: "Commento non trovato." });
+    }
+    res.status(200).send(updatedComment);
+  } catch (error) {
+    res.status(500).send({ message: "Errore del server.", error: error });
+  }
+});
+
+posts.delete("/posts/:id/comment/:commentId", async (req, res) => {
+  try {
+    const { id, commentId } = req.params;
+    const result = await CommentModel.findOneAndDelete({
+      _id: commentId,
+      postId: id,
+    });
+    if (!result) {
+      return res.status(404).send({ message: "Commento non trovato." });
+    }
+    res.status(200).send({ message: "Commento eliminato con successo." });
+  } catch (error) {
+    res.status(500).send({ message: "Errore del server.", error: error });
   }
 });
 

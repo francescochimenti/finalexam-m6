@@ -1,4 +1,4 @@
-GET http://localhost:5050/authors
+GET http://localhost:5050/posts/6533f29b74510f6854b352f7/comments
 
 ####
 
