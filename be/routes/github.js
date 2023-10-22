@@ -1,7 +1,7 @@
 const express = require("express");
 const gh = express.Router();
 const passport = require("passport");
-const GitHubStrategy = require("passport-github").Strategy;
+const GithubStrategy = require("passport-github2").Strategy;
 const jwt = require("jsonwebtoken");
 const session = require("express-session");
 require("dotenv").config();
@@ -26,7 +26,7 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(
-  new GitHubStrategy(
+  new GithubStrategy(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
@@ -37,5 +37,35 @@ passport.use(
     }
   )
 );
+
+gh.get(
+  "/auth/github",
+  passport.authenticate("github", { scope: ["user:email"] }),
+  (req, res) => {
+    const redirectUrl = `http://localhost:3000/success?user=${encodeURIComponent(
+      JSON.stringify(req.user)
+    )}`;
+    res.redirect(redirectUrl);
+  }
+);
+
+gh.get(
+  "/auth/github/callback",
+  passport.authenticate("github", { failureRedirect: "/" }),
+  (req, res) => {
+    const user = req.user;
+    console.log("LOG USER", user);
+
+    const token = jwt.sign(user, process.env.JWT_SECRET);
+    const redirectUrl = `http://localhost:3000/success?token=${encodeURIComponent(
+      token
+    )}`;
+    res.redirect(redirectUrl);
+  }
+);
+
+gh.get("/success", (req, res) => {
+  res.redirect("http://localhost:3000/home");
+});
 
 module.exports = gh;

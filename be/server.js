@@ -4,6 +4,7 @@ const postsRoute = require("./routes/posts");
 const authorsRoute = require("./routes/authors");
 const loginRoute = require("./routes/login");
 const mailRoute = require("./routes/sendMail");
+const githubRoute = require("./routes/github");
 const logger = require("./middlewares/logger");
 require("dotenv").config();
 
@@ -25,6 +26,7 @@ app.use("/", postsRoute);
 app.use("/", authorsRoute);
 app.use("/", loginRoute);
 app.use("/", mailRoute);
+app.use("/", githubRoute);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URL, {
