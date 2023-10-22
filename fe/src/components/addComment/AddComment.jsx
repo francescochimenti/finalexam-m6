@@ -42,7 +42,7 @@ const AddComment = () => {
 
   return (
     <form className="container mt-4">
-      <div className="mb-3">
+      <div className="mb-3 w-25">
         <textarea
           value={commentData.comment}
           onChange={(e) =>
@@ -54,7 +54,7 @@ const AddComment = () => {
           rows="4"
         />
       </div>
-      <div className="mb-3">
+      <div className="mb-3 w-25">
         <input
           type="number"
           min="1"

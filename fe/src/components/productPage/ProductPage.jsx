@@ -68,11 +68,7 @@ function ProductPage() {
               dangerouslySetInnerHTML={{ __html: data.post.content }}
             />
           </>
-        ) : (
-          <div className="loading">
-            <h4 className="text-center">Loading...</h4>
-          </div>
-        )}
+        ) : null}
       </Container>
     </div>
   );

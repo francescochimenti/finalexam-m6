@@ -27,7 +27,7 @@ const BlogPost = () => {
     <>
       <Container className="p-5">
         <Row className="mt-4">
-          {status === "loading" && <div>Loading...</div>}
+          {status === "loading" && <div></div>}
           {status === "failed" && <div>Error: {error}</div>}
           {status === "success" &&
             posts &&
