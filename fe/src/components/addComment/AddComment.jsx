@@ -63,7 +63,7 @@ const AddComment = () => {
           onChange={(e) =>
             setCommentData({
               ...commentData,
-              rate: parseInt(e.target.value, 10),
+              rate: parseInt(e.target.value),
             })
           }
           placeholder="Rate (e.g., 1 to 5)"
