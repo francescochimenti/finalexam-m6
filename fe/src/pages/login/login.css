@@ -1,16 +1,21 @@
 
 .main {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
     transform: translateY(-50px);
     animation: fadeInUp 0.5s forwards 0.5s;
+    padding: 50px;
+    width: 60% !important;
 }
+
+@media (max-width: 768px) {
+    .main {
+        width: 95% !important;
+}
+}
+
+
 
 @keyframes fadeInUp {
     to {
@@ -20,7 +25,7 @@
 }
 
 .button-primary {
-    background-color: #ffc800 !important;
+    background-color: #211c09 !important;
     border: none !important;
     color: #ffffff !important;
     padding: 10px 20px !important;

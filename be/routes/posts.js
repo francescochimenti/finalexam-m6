@@ -1,7 +1,6 @@
 const express = require("express");
 const posts = express.Router();
 const PostModel = require("../models/post");
-const comments = express.Router();
 const CommentModel = require("../models/comment");
 
 const multer = require("multer");
