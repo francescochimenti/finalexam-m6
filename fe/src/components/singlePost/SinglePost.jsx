@@ -12,7 +12,7 @@ const SinglePost = ({ post }) => {
       onClick={() => {
         window.location.href = `/product/${post._id}`;
       }}
-      className="single-post-card mb-4 shadow-sm"
+      className="single-post-card mb-4 shadow"
       style={{
         width: "100%",
         maxWidth: "500px",

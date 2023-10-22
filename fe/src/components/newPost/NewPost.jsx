@@ -100,6 +100,7 @@ const NewBlogPost = () => {
             placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            className="shadow"
           />
         </Form.Group>
 
@@ -111,6 +112,7 @@ const NewBlogPost = () => {
             size="lg"
             placeholder="Cover"
             onChange={onChangeSetFile}
+            className="shadow"
           />
         </Form.Group>
 
@@ -123,6 +125,7 @@ const NewBlogPost = () => {
             onChange={(e) =>
               setReadTime((prev) => ({ ...prev, value: e.target.value }))
             }
+            className="shadow"
           />
         </Form.Group>
         <Form.Group controlId="blog-form-readTime-unit" className="mt-3">
@@ -134,6 +137,7 @@ const NewBlogPost = () => {
             onChange={(e) =>
               setReadTime((prev) => ({ ...prev, unit: e.target.value }))
             }
+            className="shadow"
           >
             <option value="minutes">Minutes</option>
             <option value="hours">Hours</option>
@@ -146,6 +150,7 @@ const NewBlogPost = () => {
             as="select"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
+            className="shadow"
           >
             <option>Travel</option>
             <option>Food & Recipes</option>
@@ -164,7 +169,7 @@ const NewBlogPost = () => {
           <ReactQuill
             value={text}
             onChange={handleChange}
-            className="new-blog-content"
+            className="new-blog-content shadow"
           />
         </Form.Group>
         <Form.Group className="d-flex mt-3 justify-content-end">

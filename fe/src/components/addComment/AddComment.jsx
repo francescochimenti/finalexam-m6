@@ -50,7 +50,7 @@ const AddComment = () => {
           }
           placeholder="Write your comment here"
           required
-          className="form-control"
+          className="form-control shadow "
           rows="4"
         />
       </div>
@@ -68,10 +68,10 @@ const AddComment = () => {
           }
           placeholder="Rate (e.g., 1 to 5)"
           required
-          className="form-control"
+          className="form-control shadow"
         />
       </div>
-      <button onClick={handleSubmit} className="btn btn-primary">
+      <button onClick={handleSubmit} className="btn btn-primary shadow">
         Add Comment
       </button>
     </form>
