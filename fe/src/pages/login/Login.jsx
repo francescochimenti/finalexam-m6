@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Alert, Card } from "react-bootstrap";
 import "./login.css";
+import { useDispatch } from "react-redux";
+import { sendEmail } from "../../reducers/mailReducer";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -41,6 +44,10 @@ const Login = () => {
         navigate("/home");
       }
       setResponse(data);
+
+      if (!isLogin) {
+        dispatch(sendEmail(formData.email));
+      }
     } catch (error) {
       console.log(error);
     }

@@ -36,3 +36,12 @@ Content-Type: application/json
 ####
 
 DELETE http://localhost:5050/posts/delete/653426aee168c54ba91ddd7f
+
+####
+
+POST http://localhost:5050/send-mail
+Content-Type: application/json
+
+{
+    "to": "chimentimailertest@gmail.com"
+}

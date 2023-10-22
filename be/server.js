@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const postsRoute = require("./routes/posts");
 const authorsRoute = require("./routes/authors");
 const loginRoute = require("./routes/login");
+const mailRoute = require("./routes/sendMail");
 const logger = require("./middlewares/logger");
 require("dotenv").config();
 
@@ -23,6 +24,7 @@ app.use(cors());
 app.use("/", postsRoute);
 app.use("/", authorsRoute);
 app.use("/", loginRoute);
+app.use("/", mailRoute);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URL, {

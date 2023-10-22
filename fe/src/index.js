@@ -8,10 +8,12 @@ import { Provider } from "react-redux";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import postReducers from "../src/reducers/postReducers";
 import getCommentToggle from "../src/reducers/getCommentToggle";
+import mailReducer from "./reducers/mailReducer";
 
 const reducer = combineReducers({
   posts: postReducers,
   commentToggle: getCommentToggle,
+  email: mailReducer,
 });
 
 const store = configureStore({
