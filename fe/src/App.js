@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import ProtectedRoutes from "./middlewares/ProtectedRoutes";
 import SingleProduct from "./pages/singleProduct/SingleProduct";
 
+// everything in the ProtectedRoutes component is protected and need authentication to access
 export default function App() {
   return (
     <BrowserRouter>

@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { setCommentToggle } from "../../reducers/getCommentToggle";
 import { useDispatch } from "react-redux";
+import BeatLoader from "react-spinners/ScaleLoader";
 
 const DeleteComment = ({ commentId }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
 
   const deleteCurrentComment = async (commentId) => {
+    setLoading(true);
     try {
       await axios.delete(
         `${process.env.REACT_APP_SERVER_BASE_URL}/posts/${id}/comment/${commentId}`
@@ -18,6 +21,7 @@ const DeleteComment = ({ commentId }) => {
     } catch (err) {
       console.log(err);
     }
+    setLoading(false);
   };
 
   return (
@@ -28,7 +32,11 @@ const DeleteComment = ({ commentId }) => {
           deleteCurrentComment(commentId);
         }}
       >
-        <AiFillDelete color="red" size={30} />
+        {loading ? (
+          <BeatLoader color="red" size={30} />
+        ) : (
+          <AiFillDelete color="red" size={30} />
+        )}
       </button>
     </>
   );

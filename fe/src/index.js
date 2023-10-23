@@ -10,6 +10,8 @@ import postReducers from "../src/reducers/postReducers";
 import getCommentToggle from "../src/reducers/getCommentToggle";
 import mailReducer from "./reducers/mailReducer";
 
+//just a simple reducer to combine all reducers
+
 const reducer = combineReducers({
   posts: postReducers,
   commentToggle: getCommentToggle,

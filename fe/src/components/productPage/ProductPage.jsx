@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"; // Import useState
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import "./productPage.css";
+import BeatLoader from "react-spinners/ScaleLoader";
 
 function ProductPage() {
   const { id } = useParams();
@@ -68,7 +69,11 @@ function ProductPage() {
               dangerouslySetInnerHTML={{ __html: data.post.content }}
             />
           </>
-        ) : null}
+        ) : (
+          <div className="d-flex justify-content-center align-items-center mt-5">
+            <BeatLoader color="red" size={30} />
+          </div>
+        )}
       </Container>
     </div>
   );

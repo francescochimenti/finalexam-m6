@@ -5,6 +5,7 @@ import ResponsivePagination from "react-responsive-pagination";
 import "react-responsive-pagination/themes/bootstrap.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../reducers/postReducers";
+import BeatLoader from "react-spinners/ScaleLoader";
 
 const BlogPost = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,13 @@ const BlogPost = () => {
   useEffect(() => {
     dispatch(fetchPosts(currentPage));
   }, [currentPage, dispatch]);
+
+  if (status === "loading")
+    return (
+      <div className="d-flex justify-content-center mt-5">
+        <BeatLoader color="red" size={50} />
+      </div>
+    );
 
   return (
     <>

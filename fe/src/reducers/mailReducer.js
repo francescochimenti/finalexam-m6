@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+//this reducer is used to send an email to the user when he registers
+
 export const sendEmail = createAsyncThunk(
   "email/sendEmail",
   async (recipientEmail) => {

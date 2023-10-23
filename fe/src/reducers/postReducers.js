@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+//this reducer is used to fetch posts from the server, i use this reducer in the home page
+
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPostsByPage",
   async (page) => {
@@ -17,6 +19,7 @@ export const fetchPosts = createAsyncThunk(
   }
 );
 
+//this reducer is used to search posts by title, i use this reducer in the search page
 export const searchPostsByTitle = createAsyncThunk(
   "posts/searchPostsByTitle",
   async (title) => {

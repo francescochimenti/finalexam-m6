@@ -5,6 +5,7 @@ import "./login.css";
 import { useDispatch } from "react-redux";
 import { sendEmail } from "../../reducers/mailReducer";
 import axios from "axios";
+import BeatLoader from "react-spinners/ScaleLoader";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Login = () => {
   const [formData, setFormData] = useState({});
   const [response, setResponse] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +49,7 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const url = isLogin
       ? `${process.env.REACT_APP_SERVER_BASE_URL}/login`
@@ -80,10 +83,12 @@ const Login = () => {
       if (!isLogin) {
         dispatch(sendEmail(formData.email));
         setIsLogin(true);
+        setFile(null);
       }
     } catch (error) {
       console.log("Errore durante l'invio dei dati:", error);
     }
+    setLoading(false);
   };
 
   return (
@@ -154,7 +159,15 @@ const Login = () => {
             />
           </Form.Group>
           <Button className="button-primary" type="submit">
-            {isLogin ? "Login" : "Register"}
+            {!loading ? (
+              isLogin ? (
+                "Login"
+              ) : (
+                "Register"
+              )
+            ) : (
+              <BeatLoader color="white" size={10} />
+            )}
           </Button>
         </Form>
         <div className="mt-3 d-flex flex-column">

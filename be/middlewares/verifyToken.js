@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken");
 
+// create a middleware to verify token
+
 module.exports = (request, response, next) => {
   const token = request.header("Authorization");
 

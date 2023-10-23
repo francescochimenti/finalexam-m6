@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//this reducer is used to toggle the get every time a comment is added or deleted
+
 const initialState = {
   commentToggle: 0,
 };

@@ -198,7 +198,7 @@ posts.delete("/posts/delete/:postId", async (req, res) => {
   }
 });
 
-//comments
+// as the exercise says, we need to create a new route to handle comments, so i decide to integrate it in the same posts file because it's related to posts
 
 posts.get("/posts/:id/comments", async (req, res) => {
   try {

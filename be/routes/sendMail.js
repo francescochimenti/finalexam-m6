@@ -11,12 +11,14 @@ const transporter = createTransport({
   },
 });
 
+// every time user register send an email
+
 email.post("/send-mail", (req, res) => {
   const mailOptions = {
     from: "noreply@naturesnotes.com",
     to: req.body.to,
-    subject: "email test",
-    text: "email test",
+    subject: "Welcome on Nature's Notes",
+    text: "Welcome to Nature's Notes!",
   };
 
   transporter.sendMail(mailOptions, (err, data) => {

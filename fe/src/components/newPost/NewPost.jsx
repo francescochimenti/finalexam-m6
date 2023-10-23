@@ -4,13 +4,15 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import useSession from "../../hooks/useSession";
+import BeatLoader from "react-spinners/ScaleLoader";
 
 const NewBlogPost = () => {
   const session = useSession();
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
   const [readTime, setReadTime] = useState({ value: 0, unit: "minutes" });
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Travel");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (value) => {
     setText(value);
@@ -57,6 +59,7 @@ const NewBlogPost = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     // check if the file is not null
     if (file) {
@@ -76,6 +79,10 @@ const NewBlogPost = () => {
         );
         console.log("Post creato con successo:", response.data);
         setFile(null);
+        setText("");
+        setTitle("");
+        setReadTime({ value: 0, unit: "minutes" });
+        setCategory("");
         console.log("uploadedFile:", uploadedFile);
       } catch (error) {
         console.log("Si è verificato un errore:", error);
@@ -83,11 +90,11 @@ const NewBlogPost = () => {
     } else {
       console.error("File non caricato");
     }
+    setLoading(false);
   };
 
   return (
     <Container className="new-blog-container">
-      {/* setting the form encType */}
       <Form
         className="mt-5"
         onSubmit={handleSubmit}
@@ -184,7 +191,7 @@ const NewBlogPost = () => {
               marginLeft: "1em",
             }}
           >
-            Add
+            {!loading ? "Add Post" : <BeatLoader color="white" size={10} />}
           </Button>
         </Form.Group>
       </Form>
