@@ -1,3 +1,3 @@
-# Live preview
+# NatureNotes
 
-(https://naturenotes.netlify.app/)
+Live preview: [Click here!](https://naturenotes.netlify.app/).
