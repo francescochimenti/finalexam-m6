@@ -3,13 +3,19 @@ import "./blogHeader.css";
 import useSession from "../../hooks/useSession";
 import { useDispatch } from "react-redux";
 import { searchPostsByTitle } from "../../reducers/postReducers";
+import { fetchPosts } from "../../reducers/postReducers";
 
 const BlogPost = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    dispatch(searchPostsByTitle(search));
+    if (search !== "") {
+      dispatch(searchPostsByTitle(search));
+    }
+    if (search === "") {
+      dispatch(fetchPosts());
+    }
   }, [search, dispatch]);
 
   const session = useSession();

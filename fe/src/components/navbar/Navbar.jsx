@@ -12,7 +12,7 @@ function NavScrollExample() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="me-auto my-2 my-lg-0">
             <Nav.Link href="/home">Home</Nav.Link>
-            <Nav.Link href="/home">About</Nav.Link>
+            <Nav.Link href="/myPost">My Post</Nav.Link>
             <Nav.Link
               onClick={() => {
                 localStorage.removeItem("loggedInUser");

@@ -2,6 +2,13 @@
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s;
+}
+
+.single-post-card img {
+    cursor: pointer;
+}
+
+.c-body{
     cursor: pointer;
 }
 

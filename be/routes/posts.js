@@ -112,6 +112,32 @@ posts.get("/posts/:postId", async (req, res) => {
   }
 });
 
+posts.get("/posts/byAuthor/:authorId", async (req, res) => {
+  const { authorId } = req.params;
+  try {
+    const posts = await PostModel.find({ author: authorId }).populate(
+      "author",
+      "firstName lastName email avatar birthday"
+    );
+    if (posts.length === 0) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: "Posts not found",
+      });
+    }
+    res.status(200).send({
+      statusCode: 200,
+      message: "Posts fetched successfully",
+      posts,
+    });
+  } catch (e) {
+    res.status(500).send({
+      statusCode: 500,
+      message: "Error interno del server",
+    });
+  }
+});
+
 posts.post("/posts/create", async (req, res) => {
   const newPost = new PostModel({
     title: req.body.title,
