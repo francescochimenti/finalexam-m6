@@ -36,6 +36,7 @@ export const searchPostsByTitle = createAsyncThunk(
   }
 );
 
+//this reducer is all i need to manage posts in the app
 const postSlice = createSlice({
   name: "posts",
   initialState: {
